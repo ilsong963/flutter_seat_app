@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_seat_app/seat_bottom.dart';
+import 'package:flutter_seat_app/seat_select_box.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +20,6 @@ class SeatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(appBar: AppBar(), body: Column(children: [SeatSelectBox(), SeatBottom()]));
   }
 }
