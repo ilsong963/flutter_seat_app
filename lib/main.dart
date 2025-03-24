@@ -20,6 +20,6 @@ class SeatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: Column(children: [SeatSelectBox(), SeatBottom()]));
+    return Scaffold(appBar: AppBar(title: Text("Seats")), body: Column(children: [SeatSelectBox(), SeatBottom()]));
   }
 }
