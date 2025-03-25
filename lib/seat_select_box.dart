@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SeatSelectBox extends StatelessWidget {
-  const SeatSelectBox({super.key});
-
+  const SeatSelectBox(this.selectedRow, this.selectedCol, this.onSelected, {super.key});
+  final int? selectedRow;
+  final int? selectedCol;
+  final void Function(int rowNum, int colNum) onSelected;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -49,28 +51,38 @@ class SeatSelectBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(child: Center(child: Text('$rowNum', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
-          seat(),
+          seat(rowNum, 1),
+          seat(rowNum, 2),
+          seat(rowNum, 3),
+          seat(rowNum, 4),
+          seat(rowNum, 5),
+          seat(rowNum, 6),
+          seat(rowNum, 7),
+          seat(rowNum, 8),
+          seat(rowNum, 9),
+          seat(rowNum, 10),
         ],
       ),
     );
   }
 
-  Widget seat() {
+  Widget seat(int rowNum, int colNum) {
     return Expanded(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 2),
         child: AspectRatio(
           aspectRatio: 1,
-          child: Container(decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(10))),
+          child: GestureDetector(
+            onTap: () {
+              onSelected(rowNum, colNum);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: selectedRow == rowNum && selectedCol == colNum ? Colors.amber : Colors.grey,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
         ),
       ),
     );
